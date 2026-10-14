@@ -7,6 +7,8 @@ Introduction
 
 This project aims to be the best, clearest QR Code generator library in multiple languages. The primary goals are flexible options and absolute correctness. Secondary goals are compact implementation size and good documentation comments.
 
+**Ready-to-deploy website:** the [`web/`](web/) folder is a complete QR code generator site for India (UPI, WhatsApp, Wi‑Fi, links). See [`web/Readme.markdown`](web/Readme.markdown).
+
 Home page with live JavaScript demo, extensive descriptions, and competitor comparisons: [https://www.nayuki.io/page/qr-code-generator-library](https://www.nayuki.io/page/qr-code-generator-library)
 
 
