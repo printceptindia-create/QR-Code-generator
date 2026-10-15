@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>Free QR Code Generator for Links, Menus, WhatsApp &amp; Wi‑Fi | YourBrand</title>
+<meta name="description" content="Make free QR codes for websites, menus, WhatsApp, Wi‑Fi and phone numbers. Made in your browser, nothing is uploaded. No sign-up, no expiry.">
+<link rel="canonical" href="https://yourdomain.in/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 7 7'%3E%3Cpath d='M0 0h7v7H0zM1 1v5h5V1zM2 2h3v3H2z' fill='%230b6e4f'/%3E%3C/svg%3E">
+<style>
+:root {
+	--bg: #f6f4ef; --surface: #ffffff; --ink: #1b1b1b; --muted: #5a5a5a;
+	--line: #dedad1; --accent: #0b6e4f; --accent-ink: #ffffff; --warn: #a33a1a;
+	color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: #141513; --surface: #1d1f1c; --ink: #ecebe6; --muted: #a7a69f;
+		--line: #34362f; --accent: #3fb68b; --accent-ink: #0b1a14; --warn: #ff8a65;
+		color-scheme: dark;
+	}
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+	margin: 0; background: var(--bg); color: var(--ink);
+	font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif;
+}
+a { color: var(--accent); }
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+header { padding: 16px 0; }
+.brand { font-weight: 700; font-size: 1.15rem; text-decoration: none; color: var(--ink); }
+h1 { font-size: clamp(1.6rem, 5vw, 2.3rem); line-height: 1.15; margin: 8px 0; }
+.lede { color: var(--muted); margin: 0 0 24px; }
+.tool { display: grid; gap: 16px; }
+@media (min-width: 760px) { .tool { grid-template-columns: 1fr 340px; align-items: start; } }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+.kinds { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.kinds label {
+	padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; cursor: pointer;
+	font-weight: 600; font-size: .95rem; user-select: none;
+}
+.kinds input { position: absolute; opacity: 0; pointer-events: none; }
+.kinds label:has(:checked) { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.kinds label:has(:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 12px; }
+.field { display: grid; gap: 4px; font-size: .9rem; font-weight: 600; }
+.field small { font-weight: 400; color: var(--muted); }
+input:not([type=radio]):not([type=checkbox]):not([type=color]), textarea, select {
+	font: inherit; font-weight: 400; color: var(--ink); background: var(--bg);
+	border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; width: 100%;
+}
+textarea { min-height: 96px; resize: vertical; }
+:user-invalid { border-color: var(--warn) !important; }
+details { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 12px; }
+summary { cursor: pointer; font-weight: 600; }
+.row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+.row .field { flex: 1 1 120px; }
+input[type=color] { width: 100%; height: 42px; border: 1px solid var(--line); border-radius: 8px; background: none; padding: 2px; }
+.preview { text-align: center; }
+.preview canvas { width: 100%; max-width: 300px; height: auto; border-radius: 6px; }
+.empty { aspect-ratio: 1; max-width: 300px; margin: 0 auto; display: grid; place-items: center; border: 2px dashed var(--line); border-radius: 6px; color: var(--muted); padding: 24px; }
+#msg { min-height: 1.5em; margin: 8px 0; font-size: .9rem; color: var(--warn); }
+.actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.btn {
+	display: block; padding: 11px; border-radius: 10px; font: inherit; font-weight: 600; text-align: center;
+	text-decoration: none; cursor: pointer; border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink);
+}
+.btn.alt { background: transparent; color: var(--accent); }
+.btn[aria-disabled=true] { opacity: .4; pointer-events: none; }
+#share, #order { grid-column: 1 / -1; }
+.faq { margin: 40px 0; display: grid; gap: 16px; }
+@media (min-width: 760px) { .faq { grid-template-columns: repeat(3, 1fr); } }
+.faq h2 { font-size: 1.05rem; margin: 0 0 4px; }
+.faq p { margin: 0; color: var(--muted); }
+footer { border-top: 1px solid var(--line); padding: 20px 0 32px; font-size: .85rem; color: var(--muted); }
+footer p { margin: 4px 0; }
+</style>
+</head>
+<body>
+<header class="wrap"><a class="brand" href="./">YourBrand</a></header>
+<main class="wrap">
+	<h1>Free QR code generator</h1>
+	<p class="lede">For websites, menus, WhatsApp, Wi‑Fi and phone numbers. Made in your browser, so nothing you type is uploaded.</p>
+
+	<div class="tool">
+		<form id="form" class="card" novalidate>
+			<div class="kinds" role="radiogroup" aria-label="QR code type">
+				<label><input type="radio" name="kind" value="text" checked>Link / text</label>
+				<label><input type="radio" name="kind" value="whatsapp">WhatsApp</label>
+				<label><input type="radio" name="kind" value="wifi">Wi‑Fi</label>
+				<label><input type="radio" name="kind" value="phone">Phone</label>
+			</div>
+
+			<fieldset data-kind="text">
+				<label class="field">Website, menu or any text <textarea name="text" required maxlength="2000" placeholder="https://yourwebsite.in/menu"></textarea></label>
+			</fieldset>
+
+			<fieldset data-kind="whatsapp" hidden disabled>
+				<label class="field">WhatsApp number <small>10-digit Indian number, or include the country code</small><input name="wa" type="tel" required inputmode="tel" pattern="[+\d\s\-]{10,18}" placeholder="98765 43210"></label>
+				<label class="field">Pre-filled message <small>Optional</small><textarea name="wamsg" maxlength="500" placeholder="Hi, I'd like to place an order"></textarea></label>
+			</fieldset>
+
+			<fieldset data-kind="wifi" hidden disabled>
+				<label class="field">Network name (SSID) <input name="ssid" required maxlength="32" autocomplete="off"></label>
+				<label class="field">Password <input name="pass" maxlength="63" autocomplete="off"></label>
+				<label class="field">Security
+					<select name="sec"><option value="WPA">WPA / WPA2 / WPA3</option><option value="WEP">WEP</option><option value="nopass">None (open network)</option></select>
+				</label>
+			</fieldset>
+
+			<fieldset data-kind="phone" hidden disabled>
+				<label class="field">Phone number <small>10-digit Indian number, or include the country code</small><input name="tel" type="tel" required inputmode="tel" pattern="[+\d\s\-]{10,18}" placeholder="98765 43210"></label>
+			</fieldset>
+
+			<details>
+				<summary>Style and print label</summary>
+				<label class="field" style="margin-top:12px">Text under the QR code <small>Optional, e.g. “Scan to see our menu”</small><input name="label" maxlength="40"></label>
+				<div class="row">
+					<label class="field">QR colour <input name="fg" type="color" value="#000000"></label>
+					<label class="field">Background <input name="bg" type="color" value="#ffffff"></label>
+					<label class="field">Error correction
+						<select name="ecc"><option value="LOW">Low</option><option value="MEDIUM" selected>Medium</option><option value="QUARTILE">High</option><option value="HIGH">Highest</option></select>
+					</label>
+				</div>
+			</details>
+		</form>
+
+		<section class="card preview" aria-label="Your QR code">
+			<canvas id="qr" role="img" aria-label="QR code" hidden></canvas>
+			<div id="empty" class="empty">Fill in the details and your QR code will appear here</div>
+			<p id="msg" aria-live="polite"></p>
+			<div class="actions">
+				<a id="png" class="btn" download="qr-code.png" aria-disabled="true">Download PNG</a>
+				<a id="svg" class="btn alt" download="qr-code.svg" aria-disabled="true">Download SVG</a>
+				<button id="share" class="btn alt" type="button" hidden>Share</button>
+				<a id="order" class="btn" href="https://yourdomain.in/products" target="_top">Order printed standees &amp; stickers</a>
+			</div>
+		</section>
+	</div>
+
+	<section class="faq">
+		<div><h2>Is it really free?</h2><p>Yes. No sign-up, no watermark, and your QR code never expires, because the information is stored inside the code itself.</p></div>
+		<div><h2>Is my data safe?</h2><p>Your QR code is made on your own phone or computer. What you type is never sent to us or anyone else.</p></div>
+		<div><h2>Payment QR codes?</h2><p>We don’t make QR codes for payments, UPI or banking, to keep you safe from fraud. For a payment QR code, use the one your bank or payment app gives you.</p></div>
+	</section>
+</main>
+<footer class="wrap">
+	<p>© 2026 YourBrand · <a href="legal.html">Privacy policy and terms</a></p>
+	<p>Scan-test your QR code before printing.</p>
+	<p>QR Code is a registered trademark of DENSO WAVE INCORPORATED.</p>
+</footer>
+<script src="qrcodegen.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
