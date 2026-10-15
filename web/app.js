@@ -17,10 +17,6 @@ const xmlEscape = s => s.replace(/[&<>"]/g, c => "&#" + c.charCodeAt(0) + ";");
 
 // Each builder returns the exact text stored inside the QR code
 const builders = {
-	// NPCI UPI deep link. pa is restricted to safe characters by the input pattern.
-	upi: () => "upi://pay?pa=" + val("pa") + "&pn=" + enc(val("pn"))
-		+ (val("am") ? "&am=" + Number(val("am")).toFixed(2) : "")
-		+ (val("tn") ? "&tn=" + enc(val("tn")) : "") + "&cu=INR",
 	text: () => val("text"),
 	whatsapp: () => "https://wa.me/" + phone(val("wa")) + (val("wamsg") ? "?text=" + enc(val("wamsg")) : ""),
 	wifi: () => val("sec") === "nopass"
@@ -28,6 +24,21 @@ const builders = {
 		: `WIFI:T:${val("sec")};S:${wifiEscape(form.elements.ssid.value)};P:${wifiEscape(form.elements.pass.value)};;`,
 	phone: () => "tel:+" + phone(val("tel")),
 };
+
+// Business policy: no payment, banking or crypto QR codes (fraud risk).
+// ponytail: catches payment-app schemes and common Indian payment-link hosts only; a bank's own
+// https page still passes, so staff review before printing remains the real check.
+const paymentScheme = /^\s*(upi|bhim|paytmmp|phonepe|tez|gpay|credpay|paypal|bitcoin|ethereum|litecoin|dogecoin|solana|tron)\s*:/i;
+const paymentHost = /(^|\.)(rzp\.io|razorpay\.me|paytm\.me|phon\.pe|paypal\.me|imjo\.in|pay\.google\.com)$/i;
+function isPayment(data) {
+	if (paymentScheme.test(data))
+		return true;
+	try {
+		return paymentHost.test(new URL(data.trim()).hostname);
+	} catch (e) {
+		return false;  // Not a URL, just text
+	}
+}
 
 const luminance = hex => { const n = parseInt(hex.slice(1), 16); return 0.299 * (n >> 16) + 0.587 * (n >> 8 & 255) + 0.114 * (n & 255); };
 
@@ -42,8 +53,11 @@ function render() {
 	let qr = null;
 	msg.textContent = "";
 	if (ready) {
-		try {
-			qr = qrcodegen.QrCode.encodeText(builders[kind](), qrcodegen.QrCode.Ecc[val("ecc")]);
+		const data = builders[kind]();
+		if (isPayment(data))
+			msg.textContent = "We don't make QR codes for payments, UPI or banking. Please use the QR code your bank or payment app gives you.";
+		else try {
+			qr = qrcodegen.QrCode.encodeText(data, qrcodegen.QrCode.Ecc[val("ecc")]);
 		} catch (e) {
 			msg.textContent = "Too much text for one QR code. Please shorten it.";
 		}

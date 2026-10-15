@@ -1,7 +1,7 @@
 QR code generator website
 =========================
 
-A static website for making QR codes for UPI payments, WhatsApp, Wi‑Fi, links and phone numbers. Everything runs in the visitor's browser: no server code, no database, no cookies, no tracking.
+A static website for making QR codes for websites, menus, WhatsApp, Wi‑Fi and phone numbers. Payment, UPI, banking and crypto QR codes are deliberately not supported, and common payment links are blocked (`isPayment` in `app.js`). Everything runs in the visitor's browser: no server code, no database, no cookies, no tracking.
 
 Files:
 
