@@ -69,7 +69,7 @@ input[type=color] { width: 100%; height: 42px; border: 1px solid var(--line); bo
 }
 .btn.alt { background: transparent; color: var(--accent); }
 .btn[aria-disabled=true] { opacity: .4; pointer-events: none; }
-#share { grid-column: 1 / -1; }
+#share, #order { grid-column: 1 / -1; }
 .faq { margin: 40px 0; display: grid; gap: 16px; }
 @media (min-width: 760px) { .faq { grid-template-columns: repeat(3, 1fr); } }
 .faq h2 { font-size: 1.05rem; margin: 0 0 4px; }
@@ -143,6 +143,7 @@ footer p { margin: 4px 0; }
 				<a id="png" class="btn" download="qr-code.png" aria-disabled="true">Download PNG</a>
 				<a id="svg" class="btn alt" download="qr-code.svg" aria-disabled="true">Download SVG</a>
 				<button id="share" class="btn alt" type="button" hidden>Share</button>
+				<a id="order" class="btn" href="https://yourdomain.in/products" target="_top">Order printed standees &amp; stickers</a>
 			</div>
 		</section>
 	</div>
